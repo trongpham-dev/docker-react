@@ -1,0 +1,11 @@
+language: generic
+#hey travis we need super user level permissions then able to execute this build
+sudo: required
+services:
+  - docker
+
+before_install:
+  - docker build -t trongpham-dev/docker-react -f Dockerfile.dev .
+
+script:
+  - docker run -e CI=true trongpham-dev/docker-react npm run test
